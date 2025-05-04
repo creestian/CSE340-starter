@@ -4,3 +4,101 @@
 *:after {
   box-sizing: border-box;
 }
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  background-image: url('../images/site/small_check.jpg');
+  align-items: center;
+}
+
+body {
+  color: #252525;
+  font-family: 'Arial', sans-serif;
+  width: 90%;
+  margin: 2vh auto;
+  border: 5px solid #06b3d6;
+  border-radius: 0.5em;
+  background-color: white;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 4em);
+}
+
+#top-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 3vh;
+}
+
+.site-name {
+  justify-content: flex-start;
+}
+
+.site-name a {
+  text-decoration: none;
+  font-size: 2em;
+  color: #252525;
+}
+
+#tools {
+  position: flex-start;
+  right: 7vw;
+  top: 5vh;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#tools a {
+  text-decoration: none;
+  font-size: 0.875em;
+  text-transform: uppercase;
+  color: #252525;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  background-color: #252525;
+  color: white;
+  padding: 0;
+}
+
+nav ul li {
+  padding: 1em;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #252525;
+  background-color: white;
+}
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  margin-bottom: 1em;
+}
