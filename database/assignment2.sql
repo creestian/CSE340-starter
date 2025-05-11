@@ -10,12 +10,10 @@ WHERE account_firstname = 'Tony';
 
 
 -- #3 DELETE A QUERY
-
 DELETE FROM public.account
 WHERE account_firstname = 'Tony';
 
 -- #4 UPDATE INFO
-
 UPDATE public.inventory
 SET inv_description = REPLACE (inv_description,'small interiors','huge interior')
 WHERE inv_id = 10;
@@ -28,7 +26,6 @@ INNER JOIN classification
 WHERE classification.classification_name = 'Sport';
 
 -- #6 UPDATE QUERIES
-
 UPDATE inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
