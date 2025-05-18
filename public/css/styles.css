@@ -100,6 +100,16 @@ nav ul li a:hover {
   background-color: white;
 }
 
+@media only screen and (min-width: 768px) {
+  .nav ul li a{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.1em;
+    font-size: small;
+    margin: 0 auto;
+    list-style: none;
+  }
+}
 
 main {
   flex: 1;
@@ -280,8 +290,8 @@ img {
 
 /* vehicle details */
 .vehicle-details {
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  justify-content:center;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   gap: 20px;
@@ -314,20 +324,35 @@ img {
 
 @media only screen and (min-width: 768px) {
   .vehicle-details {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    padding: 30px;
+    display: flex;
+    justify-content: flex-start;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    list-style: none;
   }
-
-  .vehicle-details h1 {
-    font-size: 2.5rem;
+  
+  .vehicle-details ul {
+    list-style-type: none;
   }
-
-  .vehicle-details .vehicle-price {
-    font-size: 2rem;
+  
+  .vehicle-details li:nth-child(odd) {
+    background-color: #eee;
+    padding: 10px;
   }
-
+  
+  .vehicle-details li:nth-child(even) {
+    background-color: white;
+    padding: 10px;
+  }
+  
   .vehicle-details p {
-    font-size: 1.2rem;
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #333;
   }
 }
