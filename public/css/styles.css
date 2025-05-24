@@ -58,7 +58,6 @@ header a {
 }
 
 #tools {
-  position: flex-start;
   right: 7vw;
   top: 5vh;
   display: flex;
@@ -150,15 +149,19 @@ footer p {
   top: 1em;
   left: 40%;
   transform: translateX(-70%);
-  h2 {
-    margin: 0;
-    padding: 0;
-  }
-  p {
-    margin: 0;
-    padding: 0.25em 0;
-  }
-  button {
+}
+
+#car-upgrades h2{
+  margin: 0;
+  padding: 0;
+}
+
+#car-upgrades p {
+  margin: 0;
+  padding: 0.25em 0;
+}
+
+button {
     background-color: #06b3d6;
     border: none;
     margin-top: 2em;
@@ -167,7 +170,6 @@ footer p {
     font-weight: bold;
     font-size: 1em;
     border: 2px solid #252525;
-  }
 }
 
 #car-upgrades, #car-reviews {
