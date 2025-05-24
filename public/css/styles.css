@@ -26,12 +26,9 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  height: calc(100% - 4em);
   width: 90%;
   margin: 2vh auto;
-  display: flex;
-  flex-direction: column;
-  height: calc(100% - 4em);
   border: 5px solid #06b3d6;
   border-radius: 0.5em;
   overflow: hidden;
@@ -105,7 +102,7 @@ nav ul li a:hover {
     display: flex;
     flex-direction: column;
     padding: 0.5em 0.1em;
-    font-size: small;
+    font-size: 1vw;
     margin: 0 auto;
     list-style: none;
   }
@@ -169,6 +166,7 @@ footer p {
     cursor: pointer;
     font-weight: bold;
     font-size: 1em;
+    border: 2px solid #252525;
   }
 }
 
@@ -195,7 +193,8 @@ footer p {
 #car-upgrades ul {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  width: auto;
+  width: 100%;
+  height: auto;
   justify-items: center;
   padding: 0;
 }
@@ -207,6 +206,7 @@ footer p {
   justify-content: center;
   text-align: center;
   background-color:#06b3d6;
+  border: 2px solid #252525;
   opacity: 0.8;
 }
 
@@ -232,7 +232,7 @@ img {
   font-size: 0.875em;
   cursor: pointer;
   color: #252525;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* classification page */
