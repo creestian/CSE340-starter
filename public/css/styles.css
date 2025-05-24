@@ -206,6 +206,8 @@ footer p {
   align-items: center;
   justify-content: center;
   text-align: center;
+  background-color:#06b3d6;
+  opacity: 0.8;
 }
 
 #car-upgrades .image-container {
@@ -229,7 +231,7 @@ img {
 #car-upgrades li div:last-child {
   font-size: 0.875em;
   cursor: pointer;
-  color: #06b3d6;
+  color: #252525;
   text-decoration: underline;
 }
 
