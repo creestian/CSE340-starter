@@ -96,17 +96,6 @@ nav ul li a:hover {
   background-color: white;
 }
 
-@media only screen and (min-width: 768px) {
-  .nav ul li a{
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em 0.1em;
-    font-size: 1vw;
-    margin: 0 auto;
-    list-style: none;
-  }
-}
-
 main {
   flex: 1;
 }
@@ -136,7 +125,13 @@ footer p {
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
+  min-width: 300px;
 }
+
+#car-container img{
+  min-width: 300px;
+}
+
 
 #car-features {
   position: absolute;
@@ -235,6 +230,192 @@ img {
   cursor: pointer;
   color: #252525;
   text-decoration: none;
+}
+
+/* Delorean mobile */
+
+@media only screen and (max-width: 500px) {
+nav ul {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  background-color: #252525;
+  color: white;
+  padding: 0;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  padding: 0.5em;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  color: #252525;
+  background-color: white;
+}
+
+
+#car-wrapper {
+  justify-content: flex-start;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+  padding: 1em;
+  max-width: 1200px;
+  margin: 0 auto;
+  list-style: none;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column-reverse;
+}
+
+#car-container {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+#car-features {
+  position: absolute;
+  color: #03758c;
+  background-color: #f0f0f0;
+  font-size: small;
+  opacity: 0.8;
+  margin: 0;
+  padding: 0.5em;
+  top: 0.5em;
+  left: 40%;
+  transform: translateX(-70%);
+}
+
+#car-upgrades h2{
+  margin: 0;
+  padding: 0;
+}
+
+#car-upgrades p {
+  margin: 0;
+  padding: 0.25em 0;
+}
+
+button {
+    background-color: #06b3d6;
+    border: none;
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    border: 1px solid #252525;
+}
+
+#car-upgrades, #car-reviews {
+  margin-top: 30vh;
+}
+
+#car-upgrades ul li, #car-reviews ul li {
+  padding: 0.5em;
+   
+}
+
+#car-upgrades {
+  order: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#car-reviews {
+  order: 2;
+}
+
+#car-upgrades ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  height: auto;
+  justify-items: center;
+  padding: 0;
+}
+
+#car-upgrades li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color:#06b3d6;
+  border: 2px solid #252525;
+  opacity: 0.8;
+}
+
+#car-upgrades .image-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#car-upgrades .image-container img {
+  width: 4em;
+  height: 4em;
+
+}
+
+img {
+  max-width: 300px;
+}
+
+#car-upgrades li div:last-child {
+  font-size: 0.875em;
+  cursor: pointer;
+  color: #252525;
+  text-decoration: none;
+}
+
+
+.vehicle-details {
+    display: flex;
+    justify-content: flex-start;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    list-style: none;
+  }
+  
+  .vehicle-details ul {
+    list-style-type: none;
+  }
+  
+  .vehicle-details li:nth-child(odd) {
+    background-color: #eee;
+    padding: 10px;
+  }
+  
+  .vehicle-details li:nth-child(even) {
+    background-color: white;
+    padding: 10px;
+  }
+  
+  .vehicle-details p {
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    margin: 10px 0;
+    color: #333;
+  }
 }
 
 /* classification page */
