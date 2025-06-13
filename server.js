@@ -8,63 +8,104 @@
 const express = require("express")
 const expressLayouts = require("express-ejs-layouts")
 const env = require("dotenv").config()
-const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
-const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/index")
+const inventoryRoute = require("./routes/inventoryRoute")
+const session = require("express-session")
+const pool = require('./database')
+const accountRoute = require("./routes/accountRoute")
+const bodyParser = require("body-parser")
+const app = express()
+
+/*************************
+ * Middleware
+ * ************************/
+app.use(session({
+  store: new (require('connect-pg-simple')(session))({
+    createTableIfMissing: true,
+    pool,
+  }),
+  secret: process.env.SESSION_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionId',
+}))
+
+// Express Messages Middleware
+app.use(require('connect-flash')())
+app.use(function(req, res, next){
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs");
+app.use(expressLayouts);
+app.set("layout", "./layouts/layout"); // not at views root
 
 /* ***********************
  * Routes
- * View Engine and Templates
  *************************/
-app.set("view engine", "ejs")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
-app.use(static)
+app.use(static);
 
-// Index route
-/*
---altered to match Week 3 Assignments
-app.get("/", function(req, res){
-  res.render("index", {title: "Home"})
-})*/
-app.get("/", baseController.buildHome)
-app.use("/inv", inventoryRoute)
+// Index route unit
+app.get("/", utilities.handleErrors(baseController.buildHome));
+
+// Inventory routes
+app.use("/inv", inventoryRoute);
+
+// Account route
+app.use("/account",accountRoute);
 
 // File Not Found Route - must be last route in list
-app.use(async (req, res, next) => {
-  next({status: 404, message: 'Sorry, we appear to have lost that page.'})
-})
+app.use((req, res, next) => {
+  next({
+    status: 404,
+    message: `
+      Sorry, we appear to have lost that page.
+      <br>
+      <img src="/images/site/th.jpeg" alt="Funny 404 Image">
+    `
+  });
+});
 
-// Index route
-app.get("/", utilities.handleErrors(baseController.buildHome))
-
-/* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+/* ************************************
+ * Express Error Handler
+ * Place after all other middleware
+ ***************************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status == 404){ message = err.message} else {message = 'Oh no! There was a crash. Maybe try a different route?'}
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
+  const nav = await utilities.getNav(); // Fetch navigation
+  console.error(`Error at "${req.originalUrl}": ${err.message}`);
+
+  // Use the status from the error or default to 500
+  const status = err.status || 500;
+
+  // Determine if it's a 404 error (Not Found) or a server error
+  const message = status === 404 ? err.message : 'Oh no! There was a crash. Maybe try a different route?';
+
+  res.status(status).render("errors/error", {
+    title: status === 404 ? '404 - Page Not Found' : 'Server Error',
     message,
     nav
-  })
-})
+  });
+});
 
-/* ***********************
+/* **********************************
  * Local Server Information
  * Values from .env (environment) file
- *************************/
-const port = process.env.PORT
-const host = process.env.HOST
+ *************************************/
+const port = process.env.PORT || 3000;  // Default port for safety
+const host = process.env.HOST || 'localhost';  // Default host
 
-/* ***********************
+/* *****************************************
  * Log statement to confirm server operation
- *************************/
+ *******************************************/
 app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
-})
+  console.log(`app listening on ${host}:${port}`);
+});

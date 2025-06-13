@@ -46,4 +46,152 @@ invCont.buildByClassificationId = async function (req, res, next) {
   }
 };
 
+/* ***************************
+ * Deliver management view
+ * Assignment 4
+ *************************** */
+invCont.buildManagement = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList()
+  res.render("inventory/management", {
+    title: "Inventory Management",
+    nav,
+    errors: null,
+    classificationSelect,
+  });
+};
+
+
+/* ****************************************
+ *  Deliver the add classification view
+ * assignemnt 4
+ **************************************** */
+invCont.buildAddClassification = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList()
+  res.render("inventory/add-classification", {
+    title: "Add New Classification",
+    nav,
+    errors: null,
+    classificationSelect,
+  });
+};
+
+/* ****************************************
+ *  Add new classification to the database
+ **************************************** */
+invCont.addClassification = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  const classificationSelect = await utilities.buildClassificationList()
+  const { classification_name } = req.body;
+
+  // Server-side validation: check that classification_name is alphanumeric
+  const regex = /^[a-zA-Z0-9]+$/;
+  if (!regex.test(classification_name)) {
+    req.flash("notice", "Classification name cannot contain spaces or special characters.");
+    return res.status(400).render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    });
+  }
+
+  // Insert classification into the database
+  const result = await invModel.addClassification(classification_name);
+  
+  if (result) {
+    req.flash("notice", "Classification added successfully.");
+    const updatedNav = await utilities.getNav(); // Update nav bar
+    res.status(201).render("inventory/management", {
+      title: "Inventory Management",
+      nav: updatedNav,
+      errors: null,
+      classificationSelect,
+    });
+  } else {
+    req.flash("error", "Failed to add classification.");
+    res.status(500).render("inventory/add-classification", {
+      title: "Add New Classification",
+      nav,
+      errors: null,
+    });
+  }
+};
+
+/* ****************************************
+ *  Deliver the add inventory view
+ **************************************** */
+invCont.buildAddInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  let classificationSelect = await utilities.buildClassificationList();
+  res.render("inventory/add-inventory", {
+    title: "Add New Vehicle",
+    nav,
+    classificationSelect, // Dropdown options for classifications
+    vehicleData: null, // No pre-existing data
+    errors: null,
+  });
+};
+
+
+/* ****************************************
+ *  Add a new vehicle to the inventory
+ **************************************** */
+invCont.addInventory = async function (req, res, next) {
+  let nav = await utilities.getNav();
+  let classificationSelect = await utilities.buildClassificationList();
+
+  const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body;
+
+  // Validation messages
+  let errors = [];
+
+  // Server-side validation for each field
+  if (!classification_id) errors.push("Classification is required.");
+  if (!inv_make || inv_make.length < 2) errors.push("Make is required and must be at least 2 characters.");
+  if (!inv_model || inv_model.length < 2) errors.push("Model is required and must be at least 2 characters.");
+  if (!inv_year || !/^\d{4}$/.test(inv_year)) errors.push("Valid year is required (4 digits).");
+  if (!inv_description || inv_description.length < 10) errors.push("Description is required and must be at least 10 characters.");
+  if (!inv_image || !/^\/images\/.*/.test(inv_image)) errors.push("Valid image path is required (must start with '/images/').");
+  if (!inv_thumbnail || !/^\/images\/.*/.test(inv_thumbnail)) errors.push("Valid thumbnail path is required (must start with '/images/').");
+  if (!inv_price || inv_price <= 0) errors.push("Price is required and must be a positive number.");
+  if (!inv_miles || inv_miles < 0) errors.push("Miles are required and must be a non-negative number.");
+  if (!inv_color || inv_color.length < 3) errors.push("Color is required and must be at least 3 characters.");
+
+  // If errors exist, return the form with error messages
+  if (errors.length > 0) {
+    req.flash("notice", errors.join("<br>"));
+    return res.status(400).render("inventory/add-inventory", {
+      title: "Add New Vehicle",
+      nav,
+      classificationSelect,
+      vehicleData: req.body, // Keep entered data sticky
+      errors: null,
+    });
+  }
+
+  // If no errors, proceed with adding the vehicle
+  const result = await invModel.addInventoryItem(classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color);
+
+  if (result) {
+    req.flash("notice", "Vehicle added successfully.");
+    res.status(201).render("inventory/management", {
+      title: "Inventory Management",
+      nav,
+      classificationSelect,
+      errors: null,
+    });
+  } else {
+    req.flash("error", "Failed to add vehicle.");
+    res.status(500).render("inventory/add-inventory", {
+      title: "Add New Vehicle",
+      nav,
+      classificationSelect,
+      vehicleData: req.body, // Keep entered data sticky
+      errors: null,
+    });
+  }
+};
+
+
 module.exports = invCont

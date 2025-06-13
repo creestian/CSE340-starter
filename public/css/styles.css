@@ -78,6 +78,7 @@ nav ul {
   background-color: #252525;
   color: white;
   padding: 0;
+  border-radius: 8px;
 }
 
 nav ul li {
@@ -94,6 +95,7 @@ nav ul li a {
 nav ul li a:hover {
   color: #252525;
   background-color: white;
+  border-radius: 8px;
 }
 
 main {
@@ -144,6 +146,7 @@ footer p {
   top: 1em;
   left: 40%;
   transform: translateX(-70%);
+  border-radius: 8px;
 }
 
 #car-upgrades h2{
@@ -165,6 +168,7 @@ button {
     font-weight: bold;
     font-size: 1em;
     border: 2px solid #252525;
+    border-radius: 8px;
 }
 
 #car-upgrades, #car-reviews {
@@ -194,6 +198,7 @@ button {
   height: auto;
   justify-items: center;
   padding: 0;
+  border-radius: 8px;
 }
 
 #car-upgrades li {
@@ -205,6 +210,7 @@ button {
   background-color:#06b3d6;
   border: 2px solid #252525;
   opacity: 0.8;
+  border-radius: 8px;
 }
 
 #car-upgrades .image-container {
@@ -536,8 +542,404 @@ img {
   
   .vehicle-details p {
     font-family: Arial, sans-serif;
-    font-size: 1.1rem;
+    font-size: 1rem;
     margin: 10px 0;
     color: #333;
+  }
+}
+
+/* Styles for the login page */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #06b3d6;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-form label {
+  font-weight: bold;
+  color: #252525;
+}
+
+.login-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-button {
+  padding: 10px;
+  background-color: #252525;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.login-button:hover {
+  color: #252525;
+  background-color: white;
+}
+
+.flash-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.register-link a {
+  color: #06b3d6;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+
+/* Styles for the registration page */
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #06b3d6;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.registration-form label {
+  font-weight: bold;
+  color: #333;
+}
+
+.registration-form input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-button {
+  padding: 10px;
+  background-color: #252525;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.register-button:hover {
+  color: #252525;
+  background-color: white;
+}
+
+.flash-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Optional toggle password button */
+#toggle-password {
+  margin-top: -10px;
+  font-size: 0.9rem;
+  background-color: #252525;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+  text-align: left;
+}
+
+
+/* Add Classification Form Styling */
+#add-classification-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #06b3d6;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#add-classification-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+#add-classification-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+#add-classification-form .submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #252525;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#add-classification-form .submit-button:hover {
+  background-color: white;
+  color: #252525;
+}
+
+/* Mobile View */
+@media only screen and (max-width: 768px) {
+  #add-classification-form {
+    padding: 15px;
+  }
+
+  #add-classification-form label {
+    font-size: 1rem;
+  }
+
+  #add-classification-form input[type="text"] {
+    padding: 8px;
+  }
+
+  #add-classification-form .submit-button {
+    padding: 8px;
+  }
+}
+
+/* Desktop View */
+@media only screen and (min-width: 768px) {
+  #add-classification-form {
+    padding: 30px;
+  }
+
+  #add-classification-form label {
+    font-size: 1.2rem;
+  }
+
+  #add-classification-form input[type="text"] {
+    padding: 12px;
+  }
+
+  #add-classification-form .submit-button {
+    padding: 12px;
+  }
+}
+
+
+/* General form styling */
+#add-inventory-form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #06b3d6;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#add-inventory-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+#add-inventory-form input[type="text"],
+#add-inventory-form input[type="number"],
+#add-inventory-form textarea,
+#add-inventory-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#add-inventory-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#add-inventory-form .submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #252525;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+#add-inventory-form .submit-button:hover {
+  background-color: white;
+  color: #252525;
+}
+
+/* Mobile View */
+@media only screen and (max-width: 768px) {
+  #add-inventory-form {
+    padding: 15px;
+  }
+
+  #add-inventory-form label {
+    font-size: 1rem;
+  }
+
+  #add-inventory-form input[type="text"],
+  #add-inventory-form input[type="number"],
+  #add-inventory-form textarea,
+  #add-inventory-form select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  #add-inventory-form .submit-button {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Desktop View */
+@media only screen and (min-width: 768px) {
+  #add-inventory-form {
+    padding: 30px;
+  }
+
+  #add-inventory-form label {
+    font-size: 1.2rem;
+  }
+
+  #add-inventory-form input[type="text"],
+  #add-inventory-form input[type="number"],
+  #add-inventory-form textarea,
+  #add-inventory-form select {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+
+  #add-inventory-form .submit-button {
+    padding: 12px;
+    font-size: 1.1rem;
+  }
+}
+
+/* General styling for management view */
+.inv-manage {
+  list-style-type: none; /* Remove default list styling */
+  padding: 0;
+  margin: 20px 0;
+}
+
+.inv-manage li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.inv-manage a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  background-color: #252525; /* Main color for buttons */
+  padding: 12px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.inv-manage a:hover {
+  background-color: white; /* Darker on hover */
+  color: #252525;
+}
+
+/* Mobile view */
+@media only screen and (max-width: 768px) {
+  .inv-manage a {
+    font-size: 0.9rem; /* Smaller font for mobile */
+    padding: 10px;     /* Smaller padding */
+  }
+
+  h1 {
+    font-size: 1.5rem; /* Adjust title size for mobile */
+    text-align: center;
+  }
+
+  .inv-manage {
+    margin: 15px 0;
+  }
+
+  .inv-manage li {
+    margin-bottom: 8px; /* Slightly less space between items on mobile */
+  }
+}
+
+/* Desktop view */
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 2rem; /* Larger title for desktop */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .inv-manage {
+    max-width: 600px; /* Center the links container */
+    margin: 20px auto; /* Space between the list and surrounding content */
+  }
+
+  .inv-manage li {
+    margin-bottom: 15px; /* More space between links on desktop */
+  }
+
+  .inv-manage a {
+    font-size: 1.2rem; /* Slightly larger font size for links */
+    padding: 15px;     /* More padding for bigger buttons */
   }
 }
