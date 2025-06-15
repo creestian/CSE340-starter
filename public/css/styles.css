@@ -745,6 +745,7 @@ img {
 
   #add-classification-form input[type="text"] {
     padding: 8px;
+    color: #252525
   }
 
   #add-classification-form .submit-button {
