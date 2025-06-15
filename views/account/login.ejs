@@ -4,7 +4,10 @@
         res.redirect('/')
     } %>
     
+<!-- Display flash message if there is one -->
+<div class="flash-message">
   <%- messages() %>
+</div>
   
   
   <form action="/account/login" method="post" class="login-form">

@@ -1,7 +1,10 @@
 <% if (title) { %>
     <h1><%= title %></h1>
    
+<!-- Display flash message if there is one -->
+<div class="flash-message">
     <%- messages() %>
+  </div>
     <ul class="inv-manage">
         <li><a href="/inv/add-classification">Add New Classification</a></li>
         <li><a href="/inv/add-inventory">Add New Inventory</a></li>

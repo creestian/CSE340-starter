@@ -590,14 +590,13 @@ img {
 }
 
 .flash-message {
-  background-color: #f8d7da;
-  color: #721c24;
+  color: red;
   padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #f5c6cb;
   margin-bottom: 20px;
-  text-align: center;
-}
+  text-align: left;
+  font-style: italic;
+  list-style-type: none;
+} 
 
 .register-link {
   text-align: center;
@@ -653,16 +652,6 @@ img {
 .register-button:hover {
   color: #252525;
   background-color: white;
-}
-
-.flash-message {
-  background-color: #f8d7da;
-  color: #721c24;
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #f5c6cb;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
 .login-link {
@@ -943,4 +932,24 @@ img {
     font-size: 1.2rem; /* Slightly larger font size for links */
     padding: 15px;     /* More padding for bigger buttons */
   }
+}
+
+/* Input Validation Styles */
+input:valid, textarea:valid, select:valid {
+  border-color: lightgreen;  /* Light green border for valid input */
+  background-color: #eaffea; /* Light green background for valid input */
+}
+
+input:invalid, textarea:invalid, select:invalid {
+  border-color: lightcoral;  /* Light red border for invalid input */
+  background-color: #ffe5e5; /* Light red background for invalid input */
+}
+
+/* Optional: Styling for focus state to keep border color consistent */
+input:focus:valid, textarea:focus:valid, select:focus:valid {
+  border-color: #66bb6a; /* Darker green border when focused and valid */
+}
+
+input:focus:invalid, textarea:focus:invalid, select:focus:invalid {
+  border-color: #e57373; /* Darker red border when focused and invalid */
 }

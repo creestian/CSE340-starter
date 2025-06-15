@@ -1,13 +1,14 @@
 <h1><%= title %></h1>
 <!-- Display flash message if there is one -->
-        <%- messages() %>
+<div class="flash-message">
+  <%- messages() %>
+</div>
 <!-- Form to add new classification -->
 <form action="/inv/add-classification" method="POST" id="add-classification-form">
   <label for="classification_name">Classification Name:</label>
   <p><i>NAME MUST BE ALPHABETIC CHARACTERS ONLY</i></p>
   <br>
-  <input type="text" id="classification_name" name="classification_name" required pattern="^[a-zA-Z0-9]+$" value="<%= locals.classification_name %>"
-         title="Classification name cannot contain spaces or special characters"
+  <input type="text" id="classification_name" name="classification_name" value="<%= locals.classification_name %>"
          placeholder="Enter a classification name (alphabetic characters only)">
   <button type="submit" class="submit-button">Add Classification</button>
 </form>

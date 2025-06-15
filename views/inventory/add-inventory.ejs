@@ -1,6 +1,8 @@
 <h1><%= title %></h1>
 <!-- Display flash message if there is one -->
-<%- messages() %>
+<div class="flash-message">
+  <%- messages() %>
+</div>
 <form action="/inv/add-inventory" method="POST" id="add-inventory-form">
   <!-- Select classification (make sure the selected value stays sticky) -->
   <label for="classification_id">Classification:</label>
