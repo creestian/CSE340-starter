@@ -89,7 +89,7 @@ invCont.addClassification = async function (req, res, next) {
   const regex = /^[a-zA-Z0-9]+$/;
   if (!regex.test(classification_name)) {
     req.flash("notice", "Classification name cannot contain spaces or special characters.");
-    res.status(400).render("inventory/add-classification", {
+    return res.status(400).render("inventory/add-classification", {
       title: "Add New Classification",
       nav,
       errors: null,
