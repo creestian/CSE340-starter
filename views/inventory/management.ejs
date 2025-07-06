@@ -1,14 +1,20 @@
-<% if (title) { %>
-    <h1><%= title %></h1>
-   
-<!-- Display flash message if there is one -->
-<div class="flash-message">
-    <%- messages() %>
-  </div>
+  <% if (title) { %>
+  <h1><%= title %></h1>
+        
+    <!-- Display flash message if there is one -->
+    <div class="flash-message">
+      <%- messages() %>
+    </div>
     <ul class="inv-manage">
-        <li><a href="/inv/add-classification">Add New Classification</a></li>
-        <li><a href="/inv/add-inventory">Add New Inventory</a></li>
-      </ul>
+      <li><a href="/inv/add-classification">Add New Classification</a></li>
+      <li><a href="/inv/add-inventory">Add New Inventory</a></li>
+    </ul>
+    <h2>Manage Inventory</h2>
+    <p>choose a classification to see those inventory items.</p>
+    <%- classificationSelect %>
+    <table id="inventoryDisplay"></table>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+    <script src="../../js/inventory.js"></script>
   <% } else { %>
   res.redirect('/')
   <% } %>

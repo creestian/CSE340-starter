@@ -1,5 +1,6 @@
 const invModel = require("../models/inventory-model")
-
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 const Util = {}
 
 /* ************************
@@ -67,6 +68,27 @@ Util.buildClassificationGrid = async function(data) {
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
 
+/***************************************
+ * Middleware to check token validity
+ * Login Process activity
+ ************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if (req.cookies.jwt) {
+    jwt.verify(req.cookies.jwt, process.env.ACCESS_TOKEN_SECRET, function (err, accountData) {
+      if (err) {
+        req.flash("Please log in")
+        res.clearCookie("jwt")
+        return res.redirect("/account/login")
+      }
+      res.locals.accountData = accountData
+      res.locals.loggedin = 1
+      next()
+    })
+  } else {
+    next()
+  }
+}
+
 /* *************************
  * Build Vehicle view 
  ************************** */
@@ -99,6 +121,27 @@ Util.buildClassificationList = async function (classification_id = null) {
   });
   classificationList += "</select>";
   return classificationList;
+};
+
+
+// //testing
+Util.checkAuth = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (!token) {
+    req.flash("notice", "You must be logged in to access this page.");
+    return res.redirect('/account/login');
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    res.locals.accountData = decoded; // Pass account data to locals
+    res.locals.loggedin = true;
+    next();
+  } catch (err) {
+    res.clearCookie("jwt");
+    req.flash("notice", "Your session has expired. Please log in again.");
+    return res.redirect('/account/login');
+  }
 };
 
 module.exports = Util

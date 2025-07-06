@@ -31,6 +31,8 @@ router.get("/trigger-error", (req, res, next) => {
     error.status = 500; // Set the status to 500 to simulate a server error
     next(error); // Pass the error to the global error handlerMore actions
 });
-  
+
+//Route on getInventory by classification_id
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 module.exports = router;

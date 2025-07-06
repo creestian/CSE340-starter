@@ -23,10 +23,18 @@ router.post(
 // Process the login attempt
 router.post(
   "/login",
-  (req, res) => {
-    res.status(200).send('login process')
-  }
+  regValidate.loginRules(),
+  regValidate.checkLoginData,
+  utilities.handleErrors(accountController.accountLogin)
 )
+
+
+// Account management route with authentication check Activity 5
+router.get(
+  "/",
+  utilities.checkAuth, // Middleware to verify login
+  utilities.handleErrors(accountController.buildAccountManagement)
+);
 
 
 // Export the router for use in server.js
