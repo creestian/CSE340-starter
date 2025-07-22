@@ -35,4 +35,22 @@ router.get("/trigger-error", (req, res, next) => {
 //Route on getInventory by classification_id
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Route to display the edit inventory item view by inventory_id
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+
+// Route to handle the incoming request for updating an inventory item with validation
+router.post(
+  "/edit-inventoryView", // Validate inventory data on update
+  utilities.handleErrors(invController.updateInventory)
+)
+
+//Route to deliver delete confirmation view
+router.post(
+  "/delete", // Validate inventory data on update
+  utilities.handleErrors(invController.deleteInventoryItem)
+
+)
+
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView));
+
 module.exports = router;

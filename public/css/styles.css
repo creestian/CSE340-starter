@@ -763,7 +763,7 @@ img {
 
 
 /* General form styling */
-#add-inventory-form {
+#add-inventory-form, #edit-inventory-form {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
@@ -773,7 +773,7 @@ img {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#add-inventory-form label {
+#add-inventory-form label, #edit-inventory-form label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
@@ -783,7 +783,11 @@ img {
 #add-inventory-form input[type="text"],
 #add-inventory-form input[type="number"],
 #add-inventory-form textarea,
-#add-inventory-form select {
+#add-inventory-form select,
+#edit-inventory-form input[type="text"],
+#edit-inventory-form input[type="number"],
+#edit-inventory-form textarea,
+#edit-inventory-form select {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;
@@ -792,12 +796,14 @@ img {
   font-size: 1rem;
 }
 
-#add-inventory-form textarea {
+#add-inventory-form textarea,
+#edit-inventory-form textarea {
   resize: vertical;
   min-height: 100px;
 }
 
-#add-inventory-form .submit-button {
+#add-inventory-form .submit-button,
+#edit-inventory-form .submit-button {
   width: 100%;
   padding: 10px;
   background-color: #252525;
@@ -808,30 +814,38 @@ img {
   font-size: 1rem;
 }
 
-#add-inventory-form .submit-button:hover {
+#add-inventory-form .submit-button:hover,
+#edit-inventory-form .submit-button:hover {
   background-color: white;
   color: #252525;
 }
 
 /* Mobile View */
 @media only screen and (max-width: 768px) {
-  #add-inventory-form {
+  #add-inventory-form,
+  #edit-inventory-form {
     padding: 15px;
   }
 
-  #add-inventory-form label {
+  #add-inventory-form label,
+  #edit-inventory-form label {
     font-size: 1rem;
   }
 
   #add-inventory-form input[type="text"],
   #add-inventory-form input[type="number"],
   #add-inventory-form textarea,
-  #add-inventory-form select {
+  #add-inventory-form select,
+  #edit-inventory-form input[type="text"],
+  #edit-inventory-form input[type="number"],
+  #edit-inventory-form textarea,
+  #edit-inventory-form select {
     font-size: 0.9rem;
     padding: 8px;
   }
 
-  #add-inventory-form .submit-button {
+  #add-inventory-form .submit-button,
+  #edit-inventory-form .submit-button {
     padding: 8px;
     font-size: 0.9rem;
   }
@@ -839,23 +853,30 @@ img {
 
 /* Desktop View */
 @media only screen and (min-width: 768px) {
-  #add-inventory-form {
+  #add-inventory-form,
+  #edit-inventory-form {
     padding: 30px;
   }
 
-  #add-inventory-form label {
+  #add-inventory-form label,
+  #edit-inventory-form label {
     font-size: 1.2rem;
   }
 
   #add-inventory-form input[type="text"],
   #add-inventory-form input[type="number"],
   #add-inventory-form textarea,
-  #add-inventory-form select {
+  #add-inventory-form select,
+  #edit-inventory-form input[type="text"],
+  #edit-inventory-form input[type="number"],
+  #edit-inventory-form textarea,
+  #edit-inventory-form select {
     font-size: 1.1rem;
     padding: 12px;
   }
 
-  #add-inventory-form .submit-button {
+  #add-inventory-form .submit-button,
+  #edit-inventory-form .submit-button {
     padding: 12px;
     font-size: 1.1rem;
   }
@@ -863,7 +884,7 @@ img {
 
 /* General styling for management view */
 .inv-manage {
-  list-style-type: none; /* Remove default list styling */
+  list-style-type: none; 
   padding: 0;
   margin: 20px 0;
 }
