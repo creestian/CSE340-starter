@@ -231,33 +231,55 @@ async function updateAccount(req, res) {
 *  Task 4 - Assignment 5
 *  Process password update
 * *************************************** */
-async function changePassword(req, res) {
+async function updateAccount(req, res) {
   let nav = await utilities.getNav();
-  const { password } = req.body;
-  const account_id = req.session.account_id; // Retrieve account_id from session
-
-  // Check if account_id is valid
-  if (!account_id || isNaN(account_id)) {
-    req.flash("notice", "Invalid account ID.");
-    return res.status(400).redirect("/account/update");
-  }
+  const { account_firstname, account_lastname, account_email } = req.body;
+  const account_id = parseInt(req.params.account_id); // ✅ Fix applied here
 
   try {
-    // Hash the new password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await accountModel.updateAccountPassword(account_id, hashedPassword);
+    const existingAccount = await accountModel.getAccountByEmail(account_email);
 
-    req.flash("notice", "Password updated successfully.");
-    res.redirect("/account/management");
+    if (existingAccount && existingAccount.account_id !== account_id) {
+      req.flash("notice", "This email is already in use. Please use another email.");
+      return res.status(400).render("account/update", {
+        title: "Update Account",
+        nav,
+        errors: null,
+        accountData: req.body,
+      });
+    }
+
+    const updateResult = await accountModel.updateAccountInfo(
+      account_id,
+      account_firstname,
+      account_lastname,
+      account_email
+    );
+
+    if (updateResult) {
+      req.flash("notice", "Account information updated successfully.");
+      return res.redirect("/account/");
+    } else {
+      req.flash("notice", "Sorry, the update failed.");
+      return res.status(501).render("account/update", {
+        title: "Update Account",
+        nav,
+        accountData: req.body,
+        errors: ["Update failed due to a server error."],
+      });
+    }
   } catch (error) {
-    req.flash("notice", "Error updating password.");
+    console.error("Update error:", error.message);
+    req.flash("notice", "Error updating account information.");
     res.status(500).render("account/update", {
       title: "Update Account",
       nav,
       errors: null,
+      accountData: req.body,
     });
   }
 }
+
 
 
 module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdateView, updateAccount, changePassword }
