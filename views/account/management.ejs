@@ -1,13 +1,40 @@
-<% if (title) {%>
+<% if (title) { %>
     <h1><%= title %></h1>
-    <% } else {
-        res.redirect('/')
-    } %>
+<% } else { %>
+    <%- res.redirect('/') %>
+<% } %>
     
 <!-- Display flash message if there is one -->
 <div class="flash-message">
   <%- messages() %>
 </div>
+<!-- Task 3 - Assignment 5 -->
+<% if (accountData.account_type === 'Employee' || accountData.account_type === 'Admin') { %>
+   
+    <h2>Welcome <%- account_firstname %></h2>
+    <!-- Content for the account management page -->
+    <p>You're logged in.</p>
 
+    <!-- Task 4 - Assignment 5 - Account Update Form -->
+    <!-- Dynamically construct the update URL with the session's account_id -->
+    <ul class="inv-manage">
+        <li><a id="info-update" href="/account/update/<%= accountData.account_id %>">Edit Account Information</a></li>
+    </ul>
+    <h2>Inventory management</h2>
+    <ul class="inv-manage">
+        <li><a href="/inv/">Manage Inventory</a></li>
+    </ul>
+
+<% } else { %>
+
+    <h2>Welcome <%- account_firstname %></h2>
 <!-- Content for the account management page -->
-<p>You're logged in.</p>
+    <p>You're logged in.</p>
+    
+    <!-- Task 4 - Assignment 5 - Account Update Form -->
+    <!-- Dynamically construct the update URL for non-admin users -->
+    <ul class="inv-manage">
+        <li><a id="info-update" href="/account/update/<%= accountData.account_id %>">Edit Account Information</a></li>
+    </ul>
+
+<% } %>

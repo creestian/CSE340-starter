@@ -67,7 +67,6 @@ Util.buildClassificationGrid = async function(data) {
  **************************************** */
 Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
 
-
 /***************************************
  * Middleware to check token validity
  * Login Process activity
@@ -78,6 +77,7 @@ Util.checkJWTToken = (req, res, next) => {
       if (err) {
         req.flash("Please log in")
         res.clearCookie("jwt")
+        res.clearCookie("sessionId")
         return res.redirect("/account/login")
       }
       res.locals.accountData = accountData
@@ -88,6 +88,63 @@ Util.checkJWTToken = (req, res, next) => {
     next()
   }
 }
+
+/***************************************************
+ * Task 2 - Assignment 5
+ * Use middleware that makes use of the JWT token and checks the account type
+ **************************************************** */
+Util.checkAdminOrEmployee = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  // Check if JWT exists
+  if (!token) {
+    req.flash("notice", "Access denied. Please log in as an employee or admin.");
+    return res.redirect("/account/login");
+  }
+
+  try {
+    // Verify JWT
+    const accountData = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+
+    // Check if account type is "Employee" or "Admin"
+    if (accountData.account_type === "Employee" || accountData.account_type === "Admin") {
+      req.session.accountData = accountData; // Store verified data in session
+      return next();
+    } else {
+      req.flash("notice", "Access denied. Only employees and admins can access this page.");
+      return res.redirect("/account/login");
+    }
+  } catch (error) {
+    req.flash("notice", "Session expired or invalid. Please log in.");
+    return res.redirect("/account/login");
+  }
+};
+
+/****************************************
+ * assingment 5 account validation
+ ****************************************/
+
+// Validation for account update
+Util.validateAccountUpdate = (req, res, next) => {
+  const { account_firstname, account_lastname, account_email } = req.body;
+  // Check for required fields and valid email format
+  if (!account_firstname || !account_lastname || !account_lastname) {
+    req.flash("error", "All fields are required.");
+    return res.redirect("/account/");
+  }
+  next();
+};
+
+// Validation for password update
+Util.validatePassword = (req, res, next) => {
+  const { password } = req.body;
+  const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{12,}$/;
+  if (!password || !passwordPattern.test(password)) {
+    req.flash("error", "Password must meet the requirements.");
+    return res.redirect("/account/");
+  }
+  next();
+};
 
 /* *************************
  * Build Vehicle view 
@@ -139,6 +196,7 @@ Util.checkAuth = (req, res, next) => {
     next();
   } catch (err) {
     res.clearCookie("jwt");
+    res.clearCookie("sessionId");
     req.flash("notice", "Your session has expired. Please log in again.");
     return res.redirect('/account/login');
   }

@@ -33,6 +33,13 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// Set the loggedin variable globally for views Assignment 5
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session?.loggedin || false;
+  res.locals.account_firstname = req.session?.account_firstname || ''; // Default to an empty string if not logged in
+  next();
+});
+
 // Express Messages Middleware
 app.use(require('connect-flash')())
 app.use(function(req, res, next){
