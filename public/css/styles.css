@@ -55,6 +55,9 @@ header a {
 .siteName {
   font-size: 30px;
   color: #252525;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #tools {
@@ -973,4 +976,102 @@ input:focus:valid, textarea:focus:valid, select:focus:valid {
 
 input:focus:invalid, textarea:focus:invalid, select:focus:invalid {
   border-color: #e57373; /* Darker red border when focused and invalid */
+}
+
+.nav-toggle {
+  display: none;
+  background-color: #252525;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-menu ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #252525;
+  }
+
+  .nav-menu ul.show {
+    display: flex;
+  }
+
+  .nav-menu ul li {
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+/* Styled Classification Dropdown */
+.styled-select {
+  width: 300px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-family: 'Arial', sans-serif;
+  color: #252525;
+  background-color: #f9f9f9;
+  border: 2px solid #252525;
+  border-radius: 8px;
+  appearance: none; /* Remove default arrow styling */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23000' d='M2 0L0 2h4L2 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 0.65em auto;
+}
+
+@media only screen and (max-width: 500px) {
+  .styled-select {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+}
+
+
+.manage-inventory-section {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.manage-inventory-section label,
+.manage-inventory-section p {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.manage-inventory-section .styled-select {
+  margin: 0 auto;
+}
+
+
+#inventoryDisplay {
+  margin: 2em auto;
+  text-align: center;
+}
+
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#inventoryDisplay tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+#inventoryDisplay table,
+#inventoryDisplay th,
+#inventoryDisplay td {
+  margin: auto;
+  text-align: left;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
 }

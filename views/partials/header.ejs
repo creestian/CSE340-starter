@@ -1,12 +1,13 @@
 <header id="top-header">
     <span class="siteName">
+      <button class="nav-toggle" id="nav-toggle">&#9776;</button>
       <a href="/" title="Return to home page">CSE Motors</a>
     </span>
     <div id="tools">
         <% if (loggedin==true) { %>
             <!-- Display when logged in -->
-             <a href="/account/">Welcome  <%- account_firstname %> </a>
-            <a title="Click to log out" href="account/logout">Logout</a>
+            <a href="/account/">Welcome <%- account_firstname %></a>&nbsp;|&nbsp;
+            <a title="Click to log out" href="/account/logout">  Logout</a>
         <% } else { %>
             <!-- Display when logged out -->
             <a title="Click to log in" href="/account/login">My Account</a>

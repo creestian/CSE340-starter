@@ -19,6 +19,8 @@ const bodyParser = require("body-parser")
 const app = express()
 const cookieParser = require("cookie-parser")
 
+
+app.use(express.static("public"))
 /*************************
  * Middleware
  * ************************/
@@ -81,7 +83,7 @@ app.use((req, res, next) => {
     message: `
       Sorry, we appear to have lost that page.
       <br>
-      <img src="/images/site/th.jpeg" alt="Funny 404 Image">
+      <img src="/images/site/404.png" alt="Funny 404 Image">
     `
   });
 });
