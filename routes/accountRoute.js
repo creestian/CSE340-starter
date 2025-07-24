@@ -4,6 +4,7 @@ const router = new express.Router();
 const accountController = require("../controllers/accountController");
 const utilities = require("../utilities"); // Error handler
 const regValidate = require('../utilities/account-validation')
+const restrictedAccess = utilities.checkAdminOrEmployee; // Final Enhancement
 
 // Route to handle login view when "My Account" is clicked
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
@@ -70,5 +71,30 @@ router.post(
   utilities.handleErrors(accountController.changePassword)
 );
 
+/* ****************************************
+*  Final Enhancement
+*  
+* *************************************** */
+
+// Route to display the contact form - Final Enhancement
+router.get("/contact", accountController.buildContactForm);
+
+// Route to handle contact form submission - Final Enhancement
+router.post("/contact", accountController.processContactForm);
+
+// Route to display all messages in admin view - Final Enhancement
+router.get("/admin/messages",restrictedAccess, accountController.viewMessages);
+
+// Route to display the profile update form
+router.get("/updateProfile", accountController.buildProfileUpdate);
+
+// Route to process updating general account information
+router.post("/updateProfile/info", accountController.processUpdateAccountInfo);
+
+// Route to process updating the account password
+router.post("/updateProfile/password", accountController.processUpdatePassword);
+
+// Add Message Deletion Feature - Final Enhancement
+router.post('/admin/messages/delete/:id', restrictedAccess, accountController.deleteMessage)
 // Export the router for use in server.js
 module.exports = router;
