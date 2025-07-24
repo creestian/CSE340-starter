@@ -169,4 +169,19 @@ async function deleteMessageById(id) {
   return result.rowCount > 0
 }
 
-module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountInfo, updateAccountPassword, saveMessage, getMessages, updateAccountInfo, updateAccountPassword, deleteMessageById};
+async function getAllAccounts() {
+  const sql = "SELECT account_id, account_firstname, account_lastname, account_email FROM account";
+  const result = await pool.query(sql);
+  return result.rows;
+}
+
+// File: models/account-model.js
+
+async function getAllAccountsExcept(userId) {
+  const sql = `SELECT account_id, account_firstname, account_lastname, account_email
+               FROM account WHERE account_id != $1`;
+  const result = await pool.query(sql, [userId]);
+  return result.rows;
+}
+
+module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountInfo, updateAccountPassword, saveMessage, getMessages, updateAccountInfo, updateAccountPassword, deleteMessageById, getAllAccounts, getAllAccountsExcept};

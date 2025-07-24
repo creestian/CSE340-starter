@@ -1,15 +1,19 @@
 // File: routes/messageRoute.js
 const express = require("express");
 const router = express.Router();
-const MessageController = require("../controllers/messageController");
-const Utilities = require("../utilities/");
+const utilities = require("../utilities/");
+const messageController = require("../controllers/messageController");
+// console.log("Available messageController functions:", Object.keys(messageController));
+console.log("Available functions:", Object.keys(messageController));
 
-router.get("/inbox", Utilities.checkLogin, MessageController.inbox);
-router.get("/archived", Utilities.checkLogin, MessageController.archived);
-router.get("/view/:id", Utilities.checkLogin, MessageController.view);
-router.post("/archive/:id", Utilities.checkLogin, MessageController.archive);
-router.post("/delete/:id", Utilities.checkLogin, MessageController.delete);
-router.get("/reply/:id", Utilities.checkLogin, MessageController.replyForm);
-router.post("/reply/:id", Utilities.checkLogin, MessageController.sendReply);
+router.get("/inbox", utilities.checkJWTToken, messageController.inbox);
+router.get("/archived", utilities.checkJWTToken, messageController.archived);
+router.get("/view/:id", utilities.checkJWTToken, messageController.view);
+router.post("/archive/:id", utilities.checkJWTToken, messageController.archive);
+router.post("/delete/:id", utilities.checkJWTToken, messageController.delete);
+router.get("/reply/:id", utilities.checkJWTToken, messageController.replyForm);
+router.post("/reply/:id", utilities.checkJWTToken, messageController.sendReply);
+router.get("/new", utilities.checkJWTToken, messageController.newMessageForm);
+router.post("/new", utilities.checkJWTToken, messageController.sendNewMessage);
 
 module.exports = router;

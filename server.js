@@ -98,18 +98,6 @@ app.use("/inv", inventoryRoute);
 // Account route
 app.use("/account",accountRoute);
 
-// File Not Found Route - must be last route in list
-app.use((req, res, next) => {
-  next({
-    status: 404,
-    message: `
-      Sorry, we appear to have lost that page.
-      <br>
-      <img src="/images/site/404.png" alt="Funny 404 Image">
-    `
-  });
-});
-
 /* ************************************
  * Messages Final Project
  ***************************************/
@@ -133,6 +121,18 @@ app.use(async (err, req, res, next) => {
     title: status === 404 ? '404 - Page Not Found' : 'Server Error',
     message,
     nav
+  });
+});
+
+// File Not Found Route - must be last route in list
+app.use((req, res, next) => {
+  next({
+    status: 404,
+    message: `
+      Sorry, we appear to have lost that page.
+      <br>
+      <img src="/images/site/404.png" alt="Funny 404 Image">
+    `
   });
 });
 

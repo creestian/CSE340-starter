@@ -642,6 +642,21 @@ img {
   border-radius: 5px;
 }
 
+.registration-form .submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #252525;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.registration-form .submit-button:hover {
+  background-color: white;
+  color: #252525;
+}
+
 .register-button {
   padding: 10px;
   background-color: #252525;
@@ -1084,7 +1099,7 @@ input:focus:invalid, textarea:focus:invalid, select:focus:invalid {
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #06b3d6;
   border-radius: 8px;
   border: 1px solid #ddd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -1112,17 +1127,18 @@ input:focus:invalid, textarea:focus:invalid, select:focus:invalid {
 }
 
 .contact-form .submit-button {
+  width: 100%;
   padding: 10px;
-  background-color: #00bfff;
+  background-color: #252525;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
 }
 
 .contact-form .submit-button:hover {
-  background-color: #007acc;
+  background-color: white;
+  color: #252525;
 }
 
 /* Mobile View */
@@ -1232,6 +1248,49 @@ input:focus:invalid, textarea:focus:invalid, select:focus:invalid {
   border-radius: 8px;
 }
 
-.view-message button {
-  margin-right: 1em;
+.view-message .submit-button {
+  display: inline-block;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  background-color: #252525;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-content: center;
+  margin-top: 1em;
+}
+
+.view-message .submit-button:hover {
+  background-color: white;
+  color: #252525;
+}
+
+.alert.success {
+  background-color: #e6ffed;
+  color: #2f855a;
+  padding: 10px;
+  border: 1px solid #c6f6d5;
+  margin-bottom: 1em;
+  border-radius: 5px;
+}
+
+.message-list li {
+  margin-bottom: 1em;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.message-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.message-actions form,
+.message-actions a {
+  display: inline-block;
+  font-weight: bold;
 }

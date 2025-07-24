@@ -1,0 +1,30 @@
+<% if (title) {%>
+    <h1><%= title %></h1>
+    <% } else {
+        res.redirect('/')
+    } %>
+    
+<% if (message && message.length > 0) { %>
+  <div class="alert success"><%= message %></div>
+<% } %>
+<!-- This is a custom middleware function that displays flash messages -->
+
+  <form id="add-inventory-form" method="post" action="/messages/new">
+    <label for="classification_id">To:</label>
+    <select name="recipient_id" required>
+      <option value="">Select a recipient</option>
+      <% accounts.forEach(account => { %>
+        <option value="<%= account.account_id %>"><%= account.account_firstname %> (<%= account.account_email %>)</option>
+      <% }) %>
+    </select>
+    
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject" required>
+    <small class="error-message" id="subject-error">Please enter a subject for your message.</small>
+
+    <label for="message_content">Message:</label>
+    <textarea id="inv_description" name="message_content" required></textarea>
+    <small class="error-message" id="message-error">Please enter your message.</small>
+
+    <button type="submit" class="submit-button">Send Message</button>
+  </form>

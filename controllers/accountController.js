@@ -2,6 +2,7 @@ const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const messageModel = require("../models/message-model");
 require("dotenv").config()
 
 /* ****************************************
@@ -278,23 +279,34 @@ async function processUpdatePassword(req, res) {
 // Controller for displaying the contact form - Final Enhancement
 async function buildContactForm(req, res) {
   const nav = await utilities.getNav();
+  const accounts = await accountModel.getAllAccounts(); // ⬅️ You'll need to implement this in account-model.js
   res.render("account/contact", {
     title: "Contact Us",
     nav,
+    accounts,
     errors: null
   });
 }
 
 // Controller for processing the contact form submission - Final Enhancement
 async function processContactForm(req, res) {
-  const { sender_name, sender_email, message_content } = req.body;
+  const { recipient_id, subject, message_content } = req.body;
+  const sender_name = req.session.accountData.account_firstname;
+  const sender_email = req.session.accountData.account_email;
+
   try {
-    await accountModel.saveMessage(sender_name, sender_email, message_content);
-    req.flash("notice", 'Thank you, Expect to hear from us')
+    await messageModel.sendMessage(
+      sender_name,
+      sender_email,
+      recipient_id,
+      subject,
+      message_content
+    );
+    req.flash("notice", 'Message sent successfully.');
     res.redirect("/account/contact");
   } catch (error) {
-    console.error("Error processing contact form:", error);
-    res.status(500).send("Error submitting form.");
+    console.error("Error processing message:", error);
+    res.status(500).send("Error submitting message.");
   }
 }
 
