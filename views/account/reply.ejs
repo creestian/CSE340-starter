@@ -1,0 +1,11 @@
+// File: views/account/reply.ejs
+<h1><%= title %></h1>
+<form method="post" action="/messages/reply/<%= original.id %>">
+  <label>Subject:</label><br>
+  <input type="text" name="subject" value="Re: <%= original.subject %>" required><br>
+
+  <label>Message:</label><br>
+  <textarea name="message_content" required rows="6" cols="50"></textarea><br>
+
+  <button type="submit">Send</button>
+</form>

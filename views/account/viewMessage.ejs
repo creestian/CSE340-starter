@@ -1,0 +1,15 @@
+// File: views/account/viewMessage.ejs
+<div class="view-message">
+    <h1><%= message.subject %></h1>
+    <p><strong>From:</strong> <%= message.sender_name %> (<%= message.sender_email %>)</p>
+    <p><%= message.message_content %></p>
+    <p><em>Sent at: <%= message.created_at.toLocaleString() %></em></p>
+
+    <form method="post" action="/messages/archive/<%= message.id %>">
+    <button type="submit">Archive</button>
+    </form>
+    <form method="post" action="/messages/delete/<%= message.id %>">
+    <button type="submit">Delete</button>
+    </form>
+    <a href="/messages/reply/<%= message.id %>">Reply</a>
+</div>

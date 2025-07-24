@@ -333,4 +333,4 @@ async function deleteMessage(req, res) {
 }
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdateView, updateAccount, changePassword, buildContactForm, processContactForm, viewMessages,  buildProfileUpdate, processUpdateAccountInfo, processUpdatePassword, deleteMessage }
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildProfileUpdate, updateAccount, buildContactForm, processContactForm, viewMessages,  buildProfileUpdate, processUpdateAccountInfo, processUpdatePassword, deleteMessage }

@@ -1192,3 +1192,46 @@ input:focus:invalid, textarea:focus:invalid, select:focus:invalid {
   display: none;
   margin-bottom: 10px;
 }
+
+.message-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.message-list li {
+  background-color: #f9f9f9;
+  border: 2px solid #252525;
+  border-radius: 8px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.message-list li a {
+  color: #252525;
+  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.message-list li a:hover {
+  text-decoration: underline;
+}
+
+.message-list em {
+  color: #ff0000;
+}
+
+.view-message {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+  background-color: #f0f0f0;
+  border: 2px solid #252525;
+  border-radius: 8px;
+}
+
+.view-message button {
+  margin-right: 1em;
+}

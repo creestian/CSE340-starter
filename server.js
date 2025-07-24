@@ -18,6 +18,7 @@ const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const app = express()
 const cookieParser = require("cookie-parser")
+const messageRoute = require("./routes/messageRoute");
 
 
 app.use(express.static("public"))
@@ -108,6 +109,11 @@ app.use((req, res, next) => {
     `
   });
 });
+
+/* ************************************
+ * Messages Final Project
+ ***************************************/
+app.use("/messages", messageRoute);
 
 /* ************************************
  * Express Error Handler

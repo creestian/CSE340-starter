@@ -258,11 +258,16 @@ UPDATE inventory
 SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
 
--- #7 CREATE TABLE MESSAGES - Final Enhancement
+-- #7 CREATE TABLE MESSAGES - Final Messages Project
 CREATE TABLE messages (
   id SERIAL PRIMARY KEY,
-  sender_name VARCHAR(255) NOT NULL,
-  sender_email VARCHAR(255) NOT NULL,
-  message_content TEXT NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  sender_name VARCHAR(255) NOT NULL,           -- Displayed sender name (e.g., Admin, John)
+  sender_email VARCHAR(255) NOT NULL,          -- Email or identifier of sender
+  recipient_id INT REFERENCES account(account_id), -- FK to account receiving the message
+  subject VARCHAR(255),                        -- Message subject line
+  message_content TEXT NOT NULL,               -- Full body of the message
+  is_read BOOLEAN DEFAULT false,               -- Whether the recipient has read the message
+  is_archived BOOLEAN DEFAULT false,           -- Whether the message is archived
+  reply_to_id INT REFERENCES messages(id),     -- Self-reference to parent message for threading
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Date/time message was sent
 );

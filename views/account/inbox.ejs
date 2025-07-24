@@ -1,0 +1,15 @@
+// File: views/account/inbox.ejs
+<h1><%= title %></h1>
+<ul class="message-list">
+  <% if (messages.length === 0) { %>
+    <li>No messages found.</li>
+  <% } else { %>
+    <% messages.forEach(msg => { %>
+      <li>
+        <strong><a href="/messages/view/<%= msg.id %>"><%= msg.subject %></a></strong>
+        <% if (!msg.is_read) { %><em>(unread)</em><% } %><br>
+        From: <%= msg.sender_name %> - <%= msg.created_at.toLocaleString() %>
+      </li>
+    <% }) %>
+  <% } %>
+</ul>
